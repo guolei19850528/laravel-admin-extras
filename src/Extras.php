@@ -1,6 +1,6 @@
 <?php
 
-namespace Guolei\ExtraJsonEditor;
+namespace Guolei\Extras;
 
 use Encore\Admin\Extension;
 

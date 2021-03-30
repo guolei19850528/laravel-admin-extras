@@ -1,11 +1,12 @@
 <?php
 
-namespace Guolei\ExtraJsonEditor;
+namespace Guolei\Extras;
 
 use App\Admin\Extensions\Show\Filed\ExtraDateFormatterImpl;
 use Encore\Admin\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Show;
+use Guolei\Extras\Extras;
 use Guolei\Extras\Form\Filed\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraJsonEditorImpl;
@@ -16,9 +17,9 @@ class ExtrasServiceProvider extends ServiceProvider
     /**
      * {@inheritdoc}
      */
-    public function boot(ExtraJsonEditor $extension)
+    public function boot(Extras $extension)
     {
-        if (!ExtraJsonEditor::boot()) {
+        if (!Extras::boot()) {
             return;
         }
 
