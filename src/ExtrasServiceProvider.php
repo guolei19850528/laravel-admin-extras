@@ -2,8 +2,10 @@
 
 namespace Guolei\ExtraJsonEditor;
 
+use App\Admin\Extensions\Show\Filed\ExtraDateFormatterImpl;
 use Encore\Admin\Admin;
 use Encore\Admin\Form;
+use Encore\Admin\Show;
 use Guolei\Extras\Form\Filed\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraJsonEditorImpl;
@@ -33,6 +35,7 @@ class ExtrasServiceProvider extends ServiceProvider
         Admin::booting(function () {
             Form::extend('extraRadioButton', ExtraRadioButtonImpl::class);
             Form::extend('extraCheckButton', ExtraCheckboxButtonImpl::class);
+            Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
             Form::extend('extraJsonEditor', ExtraJsonEditorImpl::class);
         });
     }
