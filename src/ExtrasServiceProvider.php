@@ -5,8 +5,9 @@ namespace Guolei\Extras;
 use App\Admin\Extensions\Show\Filed\ExtraDateFormatterImpl;
 use Encore\Admin\Admin;
 use Encore\Admin\Form;
+use Encore\Admin\Grid;
 use Encore\Admin\Show;
-use Guolei\Extras\Extras;
+use Guolei\Extras\ExtrasExtension;
 use Guolei\Extras\Form\Filed\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraJsonEditorImpl;
@@ -17,14 +18,14 @@ class ExtrasServiceProvider extends ServiceProvider
     /**
      * {@inheritdoc}
      */
-    public function boot(Extras $extension)
+    public function boot(ExtrasExtension $extension)
     {
-        if (!Extras::boot()) {
+        if (!ExtrasExtension::boot()) {
             return;
         }
 
         if ($views = $extension->views()) {
-            $this->loadViewsFrom($views, 'extra-json-editor');
+            $this->loadViewsFrom($views, 'laravel-admin-extras');
         }
 
         if ($this->app->runningInConsole() && $assets = $extension->assets()) {
@@ -36,8 +37,18 @@ class ExtrasServiceProvider extends ServiceProvider
         Admin::booting(function () {
             Form::extend('extraRadioButton', ExtraRadioButtonImpl::class);
             Form::extend('extraCheckButton', ExtraCheckboxButtonImpl::class);
-            Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
             Form::extend('extraJsonEditor', ExtraJsonEditorImpl::class);
+            Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
+            Grid\Column::extend('extraDateFormatter', function ($value = null, $formatter = 'Y-m-d H:i:s') {
+                if (!is_null($value)) {
+                    if (strtotime($value)) {
+                        return date($formatter, strtotime($value));
+                    } else {
+                        return date($formatter, $value);
+                    }
+                }
+                return '';
+            });
         });
     }
 }

@@ -4,7 +4,7 @@ namespace Guolei\Extras;
 
 use Encore\Admin\Extension;
 
-class Extras extends Extension
+class ExtrasExtension extends Extension
 {
     public $name = 'laravel-admin-extras';
 

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Support\Renderable;
 
 class ExtraJsonEditorImpl extends Field\Textarea
 {
-    protected $view = 'laravel-admin-extras::form.filed.extra-json-editor.blade';
+    protected $view = 'laravel-admin-extras::form.filed.extra-json-editor';
 
     protected $options = [
         'ajax' => true,
