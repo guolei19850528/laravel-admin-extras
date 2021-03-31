@@ -82,7 +82,10 @@ class ExtraJsonEditorImpl extends Field\Textarea
 
   //监听模态框显示
  $("#{$this->formatName($this->column)}_json_editor_modal").on('show.bs.modal',function (){
-      {$this->formatName($this->column)}_json_editor.setValue(JSON.parse($("textarea[name='{$this->formatName($this->column)}']").val()));
+       if($("textarea[name='{$this->formatName($this->column)}']").val()){
+            {$this->formatName($this->column)}_json_editor.setValue(JSON.parse($("textarea[name='{$this->formatName($this->column)}']").val()));
+       }
+
  });
 
 </script>
