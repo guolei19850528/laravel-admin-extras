@@ -8,4 +8,14 @@ php artisan vendor:publish --tag=laravel-admin-extras
 ```
 ---
 #### 使用
+```php
+$form->radioButton('status', __('text'));
+//替换为
+$form->extraRadioButton('status', __('状态'));
+
+$form->radioButton('status', __('text'));
+//替换为
+$form->extraRadioButton('status', __('状态'));
+```
+
 

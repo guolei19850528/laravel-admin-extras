@@ -36,7 +36,7 @@ class ExtrasServiceProvider extends ServiceProvider
         }
         Admin::booting(function () {
             Form::extend('extraRadioButton', ExtraRadioButtonImpl::class);
-            Form::extend('extraCheckButton', ExtraCheckboxButtonImpl::class);
+            Form::extend('extraCheckBoxButton', ExtraCheckboxButtonImpl::class);
             Form::extend('extraJsonEditor', ExtraJsonEditorImpl::class);
             Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
             Grid\Column::extend('extraDateFormatter', function ($value = null, $formatter = 'Y-m-d H:i:s') {
