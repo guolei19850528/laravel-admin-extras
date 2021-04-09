@@ -38,7 +38,7 @@ class ExtrasServiceProvider extends ServiceProvider
         }
         Admin::booting(function () {
             Form::extend('extraRadioButton', ExtraRadioButtonImpl::class);
-            Form::extend('extraCheckBoxButton', ExtraCheckboxButtonImpl::class);
+            Form::extend('extraCheckboxButton', ExtraCheckboxButtonImpl::class);
             Form::extend('extraJsonEditor', ExtraJsonEditorImpl::class);
             Form::extend('extraBelongsTo', ExtraBelongsToImpl::class);
             Form::extend('extraBelongsToMany', ExtraBelongsToManyImpl::class);

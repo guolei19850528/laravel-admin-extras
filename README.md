@@ -13,9 +13,9 @@ $form->radioButton('column', __('text'));
 //替换为
 $form->extraRadioButton('column', __('text'));
 
-$form->checkBoxButton('column', __('text'));
+$form->checkboxButton('column', __('text'));
 //替换为
-$form->extraCheckBoxButton('column', __('text'));
+$form->extraCheckboxButton('column', __('text'));
 
 //json editor
 //option see https://github.com/jdorn/json-editor/
