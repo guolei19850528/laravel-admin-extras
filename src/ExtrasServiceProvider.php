@@ -8,6 +8,8 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Show;
 use Guolei\Extras\ExtrasExtension;
+use Guolei\Extras\Form\Filed\ExtraBelongsToImpl;
+use Guolei\Extras\Form\Filed\ExtraBelongsToManyImpl;
 use Guolei\Extras\Form\Filed\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraJsonEditorImpl;
@@ -38,6 +40,9 @@ class ExtrasServiceProvider extends ServiceProvider
             Form::extend('extraRadioButton', ExtraRadioButtonImpl::class);
             Form::extend('extraCheckBoxButton', ExtraCheckboxButtonImpl::class);
             Form::extend('extraJsonEditor', ExtraJsonEditorImpl::class);
+            Form::extend('extraBelongsTo', ExtraBelongsToImpl::class);
+            Form::extend('extraBelongsToMany', ExtraBelongsToManyImpl::class);
+            Form::extend('extraHasMany', ExtraHasManyImpl::class);
             Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
             Grid\Column::extend('extraDateFormatter', function ($value = null, $formatter = 'Y-m-d H:i:s') {
                 if (!is_null($value)) {
