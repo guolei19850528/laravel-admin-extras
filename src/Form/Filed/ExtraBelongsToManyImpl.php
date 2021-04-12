@@ -12,10 +12,16 @@ class ExtraBelongsToManyImpl extends BelongsTo
 {
     protected $view = 'admin::form.belongstomany';
     protected $modalLoadScript = '';
+    protected $modalUpdateScript = '';
 
     public function addModalLoadScript($script = '')
     {
         $this->modalLoadScript = $script;
+        return $this;
+    }
+    public function addModalUpdateScript($script = '')
+    {
+        $this->modalUpdateScript = $script;
         return $this;
     }
 
@@ -81,6 +87,7 @@ class ExtraBelongsToManyImpl extends BelongsTo
         }
 
         callback();
+        {$this->modalUpdateScript}
     };
 
     modal.on('show.bs.modal', function (e) {

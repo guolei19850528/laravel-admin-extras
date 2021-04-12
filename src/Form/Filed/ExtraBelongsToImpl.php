@@ -12,10 +12,16 @@ class ExtraBelongsToImpl extends BelongsTo
 {
     protected $view = 'admin::form.belongsto';
     protected $modalLoadScript = '';
+    protected $modalUpdateScript = '';
 
     public function addModalLoadScript($script = '')
     {
         $this->modalLoadScript = $script;
+        return $this;
+    }
+    public function addModalUpdateScript($script = '')
+    {
+        $this->modalUpdateScript = $script;
         return $this;
     }
 
@@ -79,8 +85,8 @@ class ExtraBelongsToImpl extends BelongsTo
             row.find('td:first').remove();
             table.find('tbody').empty().append(row);
         }
-
         callback();
+        {$this->modalUpdateScript}
     };
 
     modal.on('show.bs.modal', function (e) {
