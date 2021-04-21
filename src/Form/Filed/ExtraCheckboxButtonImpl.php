@@ -70,7 +70,7 @@ SCRIPT;
         switch (get_class($this)) {
             case Radio::class:
             case RadioButton::class:
-            case ExtraRadioButton::class:
+            case ExtraRadioButtonImpl::class:
             case RadioCard::class:
             case Select::class:
             case BelongsTo::class:
@@ -79,8 +79,7 @@ SCRIPT;
                 return 'var checked = $(this).val();';
             case Checkbox::class:
             case CheckboxButton::class:
-            case ExtraCheckboxButton::class:
-            case ExtraCheckboxButton::class:
+            case ExtraCheckboxButtonImpl::class:
             case CheckboxCard::class:
                 return <<<SCRIPT
 var checked = $('{$this->getElementClassSelector()}:checked').map(function(){
