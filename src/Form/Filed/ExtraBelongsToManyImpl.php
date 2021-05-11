@@ -30,11 +30,17 @@ class ExtraBelongsToManyImpl extends BelongsTo
         $script = <<<SCRIPT
 ;(function () {
 
-    var grid = $('.belongsto-{$this->column()}');
+    var grid = $('.belongstomany-{$this->column()}');
     var modal = $('#{$this->modalID}');
     var table = grid.find('.grid-table');
-    var selected = $("{$this->getElementClassSelector()}").val();
-    var row = null;
+    var selected = $("{$this->getElementClassSelector()}").val() || [];
+    var rows = {};
+
+    table.find('tbody').children().each(function (index, tr) {
+        if ($(tr).find('.grid-row-remove').length > 0) {
+            rows[$(tr).find('.grid-row-remove').data('key')] = $(tr);
+        }
+    });
 
     // open modal
     grid.find('.select-relation').click(function (e) {
@@ -44,13 +50,21 @@ class ExtraBelongsToManyImpl extends BelongsTo
 
     // remove row
     grid.on('click', '.grid-row-remove', function () {
-        selected = null;
+        val = $(this).data('key').toString();
+
+        var index = selected.indexOf(val);
+        if (index !== -1) {
+           selected.splice(index, 1);
+           delete rows[val];
+        }
+
         $(this).parents('tr').remove();
-        $("{$this->getElementClassSelector()}").val(null);
+        $("{$this->getElementClassSelector()}").val(selected);
 
-        var empty = $('.belongsto-{$this->column()}').find('template.empty').html();
-
-        table.find('tbody').append(empty);
+        if (selected.length == 0) {
+            var empty = $('.belongstomany-{$this->column()}').find('template.empty').html();
+            table.find('tbody').append(empty);
+        }
     });
 
     var load = function (url) {
@@ -63,27 +77,36 @@ class ExtraBelongsToManyImpl extends BelongsTo
             modal.find('.box-header:first').hide();
 
             modal.find('input.select').each(function (index, el) {
-                if ($(el).val() == selected) {
+                if ($.inArray($(el).val().toString(), selected) >=0 ) {
                     $(el).iCheck('toggle');
                 }
             });
-            {$this->modalLoadScript}
+             {$this->modalLoadScript}
         });
     };
 
     var update = function (callback) {
 
         $("{$this->getElementClassSelector()}")
-            .select2({data: [selected]})
+            .select2({data: selected})
             .val(selected)
             .trigger('change')
             .next()
             .addClass('hide');
 
-        if (row) {
+        table.find('tbody').empty();
+
+        Object.values(rows).forEach(function (row) {
             row.find('td:last a').removeClass('hide');
-            row.find('td:first').remove();
-            table.find('tbody').empty().append(row);
+            row.find('td.column-__modal_selector__').remove();
+            table.find('tbody').append(row);
+        });
+
+        if (selected.length == 0) {
+            var empty = $('.belongstomany-{$this->column()}').find('template.empty').html();
+            table.find('tbody').append(empty);
+        } else {
+            table.find('.empty-grid').parent().remove();
         }
 
         callback();
@@ -91,7 +114,7 @@ class ExtraBelongsToManyImpl extends BelongsTo
     };
 
     modal.on('show.bs.modal', function (e) {
-        load("{$this->getLoadUrl()}");
+        load("{$this->getLoadUrl(1)}");
     }).on('click', '.page-item a, .filter-box a', function (e) {
         load($(this).attr('href'));
         e.preventDefault();
@@ -100,10 +123,20 @@ class ExtraBelongsToManyImpl extends BelongsTo
         e.preventDefault();
     }).on('submit', '.box-header form', function (e) {
         load($(this).attr('action')+'&'+$(this).serialize());
+        e.preventDefault();
         return false;
     }).on('ifChecked', 'input.select', function (e) {
-        row = $(e.target).parents('tr');
-        selected = $(this).val();
+        if (selected.indexOf($(this).val()) < 0) {
+            selected.push($(this).val());
+            rows[$(e.target).val()] = $(e.target).parents('tr');
+        }
+    }).on('ifUnchecked', 'input.select', function (e) {
+           var val = $(this).val();
+           var index = selected.indexOf(val);
+           if (index !== -1) {
+               selected.splice(index, 1);
+               delete rows[$(e.target).val()];
+           }
     }).find('.modal-footer .submit').click(function () {
         update(function () {
             modal.modal('toggle');
