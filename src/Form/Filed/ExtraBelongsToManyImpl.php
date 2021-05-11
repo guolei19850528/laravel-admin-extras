@@ -6,9 +6,11 @@ namespace Guolei\Extras\Form\Filed;
 
 use Encore\Admin\Admin;
 use Encore\Admin\Form\Field\BelongsTo;
+use Encore\Admin\Form\Field\BelongsToMany;
 use Encore\Admin\Form\Field\BelongsToRelation;
 
-class ExtraBelongsToManyImpl extends BelongsTo
+
+class ExtraBelongsToManyImpl extends BelongsToMany
 {
     protected $view = 'admin::form.belongstomany';
     protected $modalLoadScript = '';
