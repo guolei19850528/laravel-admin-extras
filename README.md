@@ -20,6 +20,34 @@ $form->extraCheckboxButton('column', __('text'));
 //json editor
 //option see https://github.com/jdorn/json-editor/
 $form->extraJsonEditor('json_column', __('text'))->setOptions([]);
+
+//belongsTo
+//扩展归属选择单选
+$form->extraBelongsTo('column', Selectable::class, 'Text')
+            ->addModalLoadScript(<<<SCRIPT
+//此处为处理下拉选择框显示bug
+//{{column}} 归属选择字段
+//{{sub-column}} 归属选择字段中需要下拉框显示的字段值
+$("#modal-selector-{{column}} .{{sub-column}}").select2({
+    placeholder: {id:"",text:"选择"},
+    allowClear:true
+});
+SCRIPT
+            );
+
+//BelongsToMany
+//扩展归属选择单选
+$form->BelongsToMany('column', Selectable::class, 'Text')
+            ->addModalLoadScript(<<<SCRIPT
+//此处为处理下拉选择框显示bug
+//{{column}} 归属选择字段
+//{{sub-column}} 归属选择字段中需要下拉框显示的字段值
+$("#modal-selector-{{column}} .{{sub-column}}").select2({
+    placeholder: {id:"",text:"选择"},
+    allowClear:true
+});
+SCRIPT
+            );
 ```
 ---
 #### Detail扩展使用
