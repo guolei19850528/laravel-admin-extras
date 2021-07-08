@@ -11,6 +11,7 @@ use Guolei\Extras\Form\Filed\ExtraBelongsToImpl;
 use Guolei\Extras\Form\Filed\ExtraBelongsToManyImpl;
 use Guolei\Extras\Form\Filed\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Filed\ExtraRadioButtonImpl;
+use Guolei\Extras\Form\Filed\ExtraHasManyImpl;
 use Guolei\Extras\Form\Filed\ExtraJsonEditorImpl;
 use Guolei\Extras\Show\Filed\ExtraDateFormatterImpl;
 use Illuminate\Support\ServiceProvider;
