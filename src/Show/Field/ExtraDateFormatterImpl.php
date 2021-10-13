@@ -1,6 +1,6 @@
 <?php
 
-namespace Guolei\Extras\Show\Filed;
+namespace Guolei\Extras\Show\Field;
 
 use Encore\Admin\Show\AbstractField;
 

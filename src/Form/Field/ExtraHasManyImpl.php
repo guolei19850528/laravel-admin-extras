@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Guolei\Extras\Form\Filed;
+namespace Guolei\Extras\Form\Field;
 
 
 use Encore\Admin\Form\Field\HasMany;
@@ -15,7 +15,7 @@ use Illuminate\Support\Arr;
  * 扩展form has many
  * 主要处理一对多关联表单验证不能起作用
  * Class ExtraHasMany
- * @package App\Admin\Extensions\Form\Filed
+ * @package App\Admin\Extensions\Form\Field
  */
 class ExtraHasManyImpl extends HasMany
 {
