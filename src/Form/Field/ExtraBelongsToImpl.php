@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Guolei\Extras\Form\Filed;
+namespace Guolei\Extras\Form\Field;
 
 
 use Encore\Admin\Admin;
