@@ -7,7 +7,7 @@ class ExtraBetweenImpl extends Between
 {
     protected $formatValueCallback=null;
 
-    public function setFormatValueCallback(\Closure $closure): ExtraBetweenImpl
+    public function setFormatValueCallback(\Closure $closure)
     {
         $this->formatValueCallback=$closure;
         return $this;
