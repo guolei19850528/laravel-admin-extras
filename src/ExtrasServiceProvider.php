@@ -13,6 +13,7 @@ use Guolei\Extras\Form\Field\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Field\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Field\ExtraHasManyImpl;
 use Guolei\Extras\Form\Field\ExtraJsonEditorImpl;
+use Guolei\Extras\Grid\Filer\ExtraBetweenImpl;
 use Guolei\Extras\Show\Field\ExtraDateFormatterImpl;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,6 +46,7 @@ class ExtrasServiceProvider extends ServiceProvider
             Form::extend('extraBelongsToMany', ExtraBelongsToManyImpl::class);
             Form::extend('extraHasMany', ExtraHasManyImpl::class);
             Show::extend('extraDateFormatter', ExtraDateFormatterImpl::class);
+            Grid\Filter::extend('extraBetween', ExtraBetweenImpl::class);
             Grid\Column::extend('extraDateFormatter', function ($value = null, $formatter = 'Y-m-d H:i:s') {
                 if (!is_null($value)) {
                     if (strtotime($value)) {
