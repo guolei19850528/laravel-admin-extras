@@ -13,7 +13,7 @@ use Guolei\Extras\Form\Field\ExtraCheckboxButtonImpl;
 use Guolei\Extras\Form\Field\ExtraRadioButtonImpl;
 use Guolei\Extras\Form\Field\ExtraHasManyImpl;
 use Guolei\Extras\Form\Field\ExtraJsonEditorImpl;
-use Guolei\Extras\Grid\Filer\ExtraBetweenImpl;
+use Guolei\Extras\Grid\Filter\ExtraBetweenImpl;
 use Guolei\Extras\Show\Field\ExtraDateFormatterImpl;
 use Illuminate\Support\ServiceProvider;
 

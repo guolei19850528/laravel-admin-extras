@@ -1,5 +1,5 @@
 <?php
-namespace Guolei\Extras\Grid\Filer;
+namespace Guolei\Extras\Grid\Filter;
 use Encore\Admin\Grid\Filter\Between;
 use Illuminate\Support\Arr;
 
